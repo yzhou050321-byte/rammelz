@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Illustration — Rammel Z.</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      font-family: sans-serif;
+      cursor: none;
+      background-image: url('images/ill_bg.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 18px 32px 0 24px;
+    }
+
+    .nav-logo { height: 80px; object-fit: contain; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .nav-links a { display: block; cursor: none; transition: transform 0.2s ease; }
+    .nav-links a:hover { transform: scale(1.08) rotate(-2deg); }
+    .nav-links img { height: 52px; object-fit: contain; }
+
+    .nav-line {
+      position: fixed;
+      top: 100px; left: 24px; right: 24px;
+      height: 2px;
+      background: linear-gradient(90deg, #b8b0d8, #d4c8e8, #b8b0d8);
+      z-index: 10;
+      border-radius: 2px;
+    }
+
+    /* Page content */
+    .page-content {
+      padding-top: 130px;
+      padding-bottom: 60px;
+      padding-left: 5vw;
+      padding-right: 5vw;
+    }
+
+    /* Project label */
+    .project-label {
+      margin-bottom: 40px;
+    }
+
+    .project-label img {
+      height: 80px;
+      object-fit: contain;
+    }
+
+    /* Category grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .category-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: transform 0.25s ease;
+      animation: floatIn 0.6s ease both;
+    }
+
+    .category-item:nth-child(1) { animation-delay: 0.1s; }
+    .category-item:nth-child(2) { animation-delay: 0.2s; }
+    .category-item:nth-child(3) { animation-delay: 0.3s; }
+    .category-item:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .category-item:hover { transform: scale(1.06) rotate(-1.5deg); }
+
+    .category-item img {
+      max-height: 110px;
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 16px rgba(160,140,210,0.25));
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 32px; height: 32px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+    .cursor svg { width: 100%; height: 100%; fill: #a89dc8; opacity: 0.85; }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      animation: sparkle-fade 0.7s ease forwards;
+    }
+    @keyframes sparkle-fade {
+      0%   { opacity: 1; transform: translate(-50%,-50%) scale(1) rotate(0deg); }
+      100% { opacity: 0; transform: translate(-50%,-50%) scale(0.2) rotate(60deg); }
+    }
+
+    .transition-overlay {
+      position: fixed; inset: 0;
+      background: #e8e4f4;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .transition-overlay.active { opacity: 1; pointer-events: all; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html"><img class="nav-logo" src="images/logo.png" alt="Logo"></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn"><img src="images/nav_home.png" alt="Home"></a>
+      <a href="illustration.html" class="nav-btn"><img src="images/nav_ill.png" alt="Illustration"></a>
+      <a href="photography.html" class="nav-btn"><img src="images/nav_photo.png" alt="Photography"></a>
+      <a href="about.html" class="nav-btn"><img src="images/nav_about.png" alt="About Me"></a>
+    </div>
+  </nav>
+  <div class="nav-line"></div>
+
+  <div class="page-content">
+    <div class="project-label">
+      <img src="images/project.png" alt="Project">
+    </div>
+
+    <div class="category-grid">
+      <div class="category-item">
+        <a href="digital.html" class="nav-btn">
+          <img src="images/digital.png" alt="Digital">
+        </a>
+      </div>
+      <div class="category-item">
+        <a href="traditional.html" class="nav-btn">
+          <img src="images/tradition.png" alt="Traditional">
+        </a>
+      </div>
+      <div class="category-item">
+        <a href="character.html" class="nav-btn">
+          <img src="images/cd.png" alt="Character Design">
+        </a>
+      </div>
+      <div class="category-item">
+        <a href="herotage.html" class="nav-btn">
+          <img src="images/herotage.png" alt="HERI∞TAGE">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="transition-overlay" id="overlay"></div>
+  <div class="cursor" id="cursor">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="50" cy="62" rx="26" ry="22"/>
+      <ellipse cx="24" cy="38" rx="12" ry="10"/>
+      <ellipse cx="44" cy="28" rx="12" ry="10"/>
+      <ellipse cx="64" cy="28" rx="12" ry="10"/>
+      <ellipse cx="78" cy="38" rx="12" ry="10"/>
+    </svg>
+  </div>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      spawnSparkle(e.clientX, e.clientY);
+    });
+
+    let lastSparkle = 0;
+    function spawnSparkle(x, y) {
+      const now = Date.now();
+      if (now - lastSparkle < 80) return;
+      lastSparkle = now;
+      const el = document.createElement('div');
+      el.className = 'sparkle';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      const colors = ['#c4b8e8', '#f9d4e8', '#b8d8f0', '#ffeea0'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      el.innerHTML = `<svg viewBox="0 0 24 24"><path fill="${color}" d="M12 2 L13.5 10 L21 12 L13.5 14 L12 22 L10.5 14 L3 12 L10.5 10 Z"/></svg>`;
+      el.style.width = (10 + Math.random() * 12) + 'px';
+      el.style.height = el.style.width;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 700);
+    }
+
+    document.querySelectorAll('.nav-btn').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href !== '#') {
+          e.preventDefault();
+          document.getElementById('overlay').classList.add('active');
+          setTimeout(() => { window.location.href = href; }, 300);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

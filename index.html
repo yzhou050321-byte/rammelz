@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rammel Z.</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: sans-serif;
+      cursor: none;
+    }
+
+    /* Background */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background-image: url('images/bg.png');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    /* Hero illustration layer */
+    .hero-drawing {
+      position: fixed;
+      inset: 0;
+      background-image: url('images/hero_drawing.png');
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+      mix-blend-mode: multiply;
+      opacity: 0.85;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      padding: 18px 32px 0 24px;
+    }
+
+    .nav-logo {
+      height: 80px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      display: block;
+      cursor: none;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    .nav-links img {
+      height: 52px;
+      object-fit: contain;
+    }
+
+    /* Divider line */
+    .nav-line {
+      position: fixed;
+      top: 100px;
+      left: 24px;
+      right: 24px;
+      height: 2px;
+      background: linear-gradient(90deg, #b8b0d8, #d4c8e8, #b8b0d8);
+      z-index: 10;
+      border-radius: 2px;
+    }
+
+    /* Name logo center */
+    .name-logo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-30%, -50%);
+      z-index: 5;
+      width: 60vw;
+      max-width: 800px;
+      pointer-events: none;
+      animation: floatY 4s ease-in-out infinite;
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translate(-30%, -50%); }
+      50% { transform: translate(-30%, calc(-50% - 12px)); }
+    }
+
+    /* Custom cursor - paw */
+    .cursor {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s linear;
+    }
+
+    .cursor svg {
+      width: 100%;
+      height: 100%;
+      fill: #a89dc8;
+      opacity: 0.85;
+    }
+
+    /* Star sparkle trail */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      width: 16px;
+      height: 16px;
+      animation: sparkle-fade 0.7s ease forwards;
+    }
+
+    @keyframes sparkle-fade {
+      0%   { opacity: 1; transform: translate(-50%,-50%) scale(1) rotate(0deg); }
+      100% { opacity: 0; transform: translate(-50%,-50%) scale(0.2) rotate(60deg); }
+    }
+
+    /* Page transition overlay */
+    .transition-overlay {
+      position: fixed;
+      inset: 0;
+      background: #e8e4f4;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .transition-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg"></div>
+  <div class="hero-drawing"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html"><img class="nav-logo" src="images/logo.png" alt="Rammel Z. Logo"></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn"><img src="images/nav_home.png" alt="Home"></a>
+      <a href="illustration.html" class="nav-btn"><img src="images/nav_ill.png" alt="Illustration"></a>
+      <a href="photography.html" class="nav-btn"><img src="images/nav_photo.png" alt="Photography"></a>
+      <a href="about.html" class="nav-btn"><img src="images/nav_about.png" alt="About Me"></a>
+    </div>
+  </nav>
+
+  <div class="nav-line"></div>
+
+  <!-- Name Logo -->
+  <img class="name-logo" src="images/name_logo.png" alt="Rammel Z.">
+
+  <!-- Page transition -->
+  <div class="transition-overlay" id="overlay"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Paw pad -->
+      <ellipse cx="50" cy="62" rx="26" ry="22"/>
+      <!-- Toes -->
+      <ellipse cx="24" cy="38" rx="12" ry="10"/>
+      <ellipse cx="44" cy="28" rx="12" ry="10"/>
+      <ellipse cx="64" cy="28" rx="12" ry="10"/>
+      <ellipse cx="78" cy="38" rx="12" ry="10"/>
+    </svg>
+  </div>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      spawnSparkle(e.clientX, e.clientY);
+    });
+
+    // Sparkle trail
+    let lastSparkle = 0;
+    function spawnSparkle(x, y) {
+      const now = Date.now();
+      if (now - lastSparkle < 80) return;
+      lastSparkle = now;
+
+      const el = document.createElement('div');
+      el.className = 'sparkle';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+
+      const colors = ['#c4b8e8', '#f9d4e8', '#b8d8f0', '#ffeea0'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      el.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path fill="${color}" d="M12 2 L13.5 10 L21 12 L13.5 14 L12 22 L10.5 14 L3 12 L10.5 10 Z"/>
+      </svg>`;
+      el.style.width = (10 + Math.random() * 12) + 'px';
+      el.style.height = el.style.width;
+
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 700);
+    }
+
+    // Page transition
+    document.querySelectorAll('.nav-btn').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href !== '#') {
+          e.preventDefault();
+          const overlay = document.getElementById('overlay');
+          overlay.classList.add('active');
+          setTimeout(() => { window.location.href = href; }, 300);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
