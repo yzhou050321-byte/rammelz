@@ -51,7 +51,7 @@
       margin-bottom: 48px;
     }
     .page-title img {
-      height: 90px;
+      height: 160px;
       object-fit: contain;
       filter: drop-shadow(0 4px 20px rgba(160,140,210,0.3));
     }
@@ -442,6 +442,10 @@ margin-bottom: 28px;
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 700);
     }
+    window.addEventListener('pageshow', () => {
+      document.getElementById('overlay').classList.remove('active');
+    });
+
     document.querySelectorAll('.nav-btn').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');

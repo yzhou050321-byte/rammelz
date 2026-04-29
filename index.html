@@ -226,6 +226,10 @@
       setTimeout(() => el.remove(), 700);
     }
 
+    window.addEventListener('pageshow', () => {
+      document.getElementById('overlay').classList.remove('active');
+    });
+
     // Page transition
     document.querySelectorAll('.nav-btn').forEach(link => {
       link.addEventListener('click', (e) => {
