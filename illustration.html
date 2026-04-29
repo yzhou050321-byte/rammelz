@@ -38,6 +38,7 @@
     .nav-links a { display: block; cursor: none; transition: transform 0.2s ease; }
     .nav-links a:hover { transform: scale(1.08) rotate(-2deg); }
     .nav-links img { height: 60px; object-fit: contain; }
+    .nav-links a:nth-child(1) img { height: 50px; }
 
     .nav-line {
       position: fixed;
@@ -107,6 +108,8 @@
       object-fit: contain;
       filter: drop-shadow(0 4px 16px rgba(160,140,210,0.25));
     }
+    .category-item:nth-child(1) img { max-height: 200px; }
+    .category-item:nth-child(3) img { max-height: 220px; }
 
     /* Custom cursor */
     .cursor {
