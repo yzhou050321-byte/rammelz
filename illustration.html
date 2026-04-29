@@ -18,8 +18,7 @@
     }
 
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: relative;
       z-index: 10;
       display: flex;
       align-items: center;
@@ -41,17 +40,15 @@
     .nav-links a:nth-child(1) img { height: 40px; }
 
     .nav-line {
-      position: fixed;
-      top: 100px; left: 24px; right: 24px;
+      margin: 0 24px;
       height: 2px;
       background: linear-gradient(90deg, #b8b0d8, #d4c8e8, #b8b0d8);
-      z-index: 10;
       border-radius: 2px;
     }
 
     /* Page content */
     .page-content {
-      padding-top: 130px;
+      padding-top: 24px;
       padding-bottom: 60px;
       padding-left: 5vw;
       padding-right: 5vw;
