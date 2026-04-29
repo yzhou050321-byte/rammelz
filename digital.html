@@ -58,15 +58,16 @@
 
     /* Gallery grid */
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 28px;
+      columns: 4;
+      column-gap: 28px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     .artwork-card {
       cursor: none;
+      break-inside: avoid;
+margin-bottom: 28px;
       animation: floatIn 0.5s ease both;
     }
 
@@ -86,7 +87,6 @@
 
     .artwork-img-wrap {
       width: 100%;
-      aspect-ratio: 3/4;
       background: rgba(255,255,255,0.55);
       border-radius: 12px;
       overflow: hidden;
@@ -104,10 +104,10 @@
     }
 
     .artwork-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
     /* Placeholder for empty slots */
     .artwork-img-wrap.empty {
