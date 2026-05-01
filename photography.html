@@ -38,52 +38,97 @@
     .page-content {
       padding-top: 24px;
       padding-bottom: 80px;
-      min-height: 100vh;
+      min-height: calc(100vh - 90px);
       position: relative;
+      overflow: hidden;
+    }
+
+    /* Cloud layer */
+    .clouds {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cloud {
+      position: absolute;
+      opacity: 0.55;
+    }
+    .cloud-1  { top: 8%;  left: -4%;  animation: drift1 18s ease-in-out infinite; }
+    .cloud-2  { top: 22%; right: 2%;  animation: drift2 22s ease-in-out infinite; }
+    .cloud-3  { top: 50%; left: 10%;  animation: drift1 26s ease-in-out infinite 3s; }
+    .cloud-4  { top: 68%; right: 8%;  animation: drift2 20s ease-in-out infinite 5s; }
+    .cloud-5  { top: 35%; left: 45%;  animation: drift1 24s ease-in-out infinite 8s; opacity: 0.35; }
+
+    @keyframes drift1 {
+      0%,100% { transform: translateX(0px) translateY(0px); }
+      33%      { transform: translateX(18px) translateY(-8px); }
+      66%      { transform: translateX(-10px) translateY(6px); }
+    }
+    @keyframes drift2 {
+      0%,100% { transform: translateX(0px) translateY(0px); }
+      33%      { transform: translateX(-14px) translateY(6px); }
+      66%      { transform: translateX(10px) translateY(-10px); }
     }
 
     /* Page title */
     .page-title {
       display: flex;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+      animation: floatIn 0.6s ease both;
     }
     .page-title img {
-      height: 100px;
+      height: 200px;
       object-fit: contain;
       filter: drop-shadow(0 4px 20px rgba(160,140,210,0.3));
     }
 
-    /* Year buttons scattered layout */
+    /* Year buttons */
     .years-container {
       position: relative;
-      min-height: 500px;
+      min-height: 480px;
       max-width: 900px;
       margin: 0 auto;
+      z-index: 2;
     }
 
     .year-btn {
       position: absolute;
       cursor: none;
-      transition: transform 0.25s ease;
-      animation: floatIn 0.6s ease both;
     }
 
-    .year-btn:nth-child(1) { left: 8%; top: 60px; animation-delay: 0.1s; }
-    .year-btn:nth-child(2) { left: 42%; top: 180px; animation-delay: 0.2s; }
-    .year-btn:nth-child(3) { left: 72%; top: 320px; animation-delay: 0.3s; }
+    .year-btn:nth-child(1) { left: 6%;  top: 40px;  animation: floatIn 0.6s ease both 0.15s, float1 3.2s ease-in-out infinite 0.8s; }
+    .year-btn:nth-child(2) { left: 38%; top: 190px; animation: floatIn 0.6s ease both 0.25s, float2 3.8s ease-in-out infinite 1.0s; }
+    .year-btn:nth-child(3) { left: 68%; top: 330px; animation: floatIn 0.6s ease both 0.35s, float3 3.5s ease-in-out infinite 1.2s; }
+
+    @keyframes float1 {
+      0%,100% { transform: translateY(0px)   rotate(-2deg); }
+      50%      { transform: translateY(-14px) rotate(-2deg); }
+    }
+    @keyframes float2 {
+      0%,100% { transform: translateY(10px)  rotate(1.5deg); }
+      50%      { transform: translateY(-4px)  rotate(1.5deg); }
+    }
+    @keyframes float3 {
+      0%,100% { transform: translateY(-8px)  rotate(2deg); }
+      50%      { transform: translateY(-22px) rotate(2deg); }
+    }
 
     @keyframes floatIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to   { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: scale(0.85) translateY(16px); }
+      to   { opacity: 1; transform: scale(1)    translateY(0); }
     }
 
-    .year-btn:hover { transform: scale(1.1) rotate(-2deg); }
+    .year-btn:hover img { filter: drop-shadow(0 8px 24px rgba(160,140,210,0.45)) brightness(1.05); }
 
     .year-btn img {
-      height: 80px;
+      height: 160px;
       object-fit: contain;
       filter: drop-shadow(0 4px 16px rgba(160,140,210,0.3));
+      transition: filter 0.25s ease;
     }
 
     /* Decorative sparkle stars */
@@ -92,11 +137,12 @@
       pointer-events: none;
       opacity: 0.6;
       animation: twinkle 2s ease-in-out infinite;
+      z-index: 2;
     }
-    .deco-star:nth-child(4) { left: 30%; top: 100px; animation-delay: 0s; }
-    .deco-star:nth-child(5) { left: 65%; top: 80px; animation-delay: 0.5s; }
-    .deco-star:nth-child(6) { left: 20%; top: 280px; animation-delay: 1s; }
-    .deco-star:nth-child(7) { left: 85%; top: 200px; animation-delay: 0.3s; }
+    .deco-star:nth-child(4) { left: 28%; top: 90px;  animation-delay: 0s; }
+    .deco-star:nth-child(5) { left: 62%; top: 70px;  animation-delay: 0.5s; }
+    .deco-star:nth-child(6) { left: 18%; top: 280px; animation-delay: 1s; }
+    .deco-star:nth-child(7) { left: 82%; top: 200px; animation-delay: 0.3s; }
 
     @keyframes twinkle {
       0%, 100% { opacity: 0.4; transform: scale(1); }
@@ -139,6 +185,46 @@
   <div class="nav-line"></div>
 
   <div class="page-content">
+
+    <!-- Cloud background layer -->
+    <div class="clouds">
+      <!-- Cloud 1 -->
+      <svg class="cloud cloud-1" width="260" height="100" viewBox="0 0 260 100">
+        <ellipse cx="130" cy="72" rx="120" ry="28" fill="white"/>
+        <ellipse cx="80"  cy="56" rx="52"  ry="38" fill="white"/>
+        <ellipse cx="130" cy="48" rx="60"  ry="44" fill="white"/>
+        <ellipse cx="185" cy="58" rx="48"  ry="34" fill="white"/>
+      </svg>
+      <!-- Cloud 2 -->
+      <svg class="cloud cloud-2" width="200" height="80" viewBox="0 0 200 80">
+        <ellipse cx="100" cy="58" rx="90"  ry="22" fill="white"/>
+        <ellipse cx="60"  cy="44" rx="40"  ry="30" fill="white"/>
+        <ellipse cx="100" cy="36" rx="46"  ry="34" fill="white"/>
+        <ellipse cx="145" cy="46" rx="38"  ry="26" fill="white"/>
+      </svg>
+      <!-- Cloud 3 -->
+      <svg class="cloud cloud-3" width="300" height="110" viewBox="0 0 300 110">
+        <ellipse cx="150" cy="82" rx="140" ry="28" fill="white"/>
+        <ellipse cx="90"  cy="64" rx="60"  ry="44" fill="white"/>
+        <ellipse cx="155" cy="54" rx="70"  ry="50" fill="white"/>
+        <ellipse cx="218" cy="66" rx="54"  ry="38" fill="white"/>
+      </svg>
+      <!-- Cloud 4 -->
+      <svg class="cloud cloud-4" width="220" height="86" viewBox="0 0 220 86">
+        <ellipse cx="110" cy="64" rx="100" ry="22" fill="white"/>
+        <ellipse cx="65"  cy="50" rx="46"  ry="34" fill="white"/>
+        <ellipse cx="115" cy="42" rx="52"  ry="38" fill="white"/>
+        <ellipse cx="165" cy="52" rx="42"  ry="28" fill="white"/>
+      </svg>
+      <!-- Cloud 5 (small, centre) -->
+      <svg class="cloud cloud-5" width="160" height="64" viewBox="0 0 160 64">
+        <ellipse cx="80"  cy="48" rx="72"  ry="16" fill="white"/>
+        <ellipse cx="46"  cy="36" rx="34"  ry="26" fill="white"/>
+        <ellipse cx="84"  cy="30" rx="40"  ry="30" fill="white"/>
+        <ellipse cx="122" cy="38" rx="30"  ry="20" fill="white"/>
+      </svg>
+    </div>
+
     <div class="page-title">
       <img src="images/nav_photo.png" alt="Photography">
     </div>
