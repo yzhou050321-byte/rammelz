@@ -10,7 +10,7 @@
       min-height: 100vh;
       font-family: 'Georgia', serif;
       cursor: none;
-      background-image: url('images/ill_bg.png');
+      background-image: url('images/bg.png');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -27,8 +27,7 @@
     .nav-links img { height: 60px; object-fit: contain; }
     .nav-links a:nth-child(1) img { height: 40px; }
     .nav-line {
-      margin: 0 24px;
-      height: 2px;
+      margin: 0 24px; height: 2px;
       background: linear-gradient(90deg, #b8b0d8, #d4c8e8, #b8b0d8);
       z-index: 10; border-radius: 2px;
     }
@@ -43,43 +42,55 @@
       height: 90px; object-fit: contain;
       filter: drop-shadow(0 4px 20px rgba(160,140,210,0.3));
     }
+
+    /* Masonry */
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 28px;
+      columns: 4;
+      column-gap: 24px;
       max-width: 1200px;
       margin: 0 auto;
     }
-    .artwork-card { cursor: none; animation: floatIn 0.5s ease both; }
-    .artwork-card:nth-child(1) { animation-delay: 0.05s; }
-    .artwork-card:nth-child(2) { animation-delay: 0.1s; }
-    .artwork-card:nth-child(3) { animation-delay: 0.15s; }
-    .artwork-card:nth-child(4) { animation-delay: 0.2s; }
+    .artwork-card {
+      cursor: none;
+      break-inside: avoid;
+      margin-bottom: 24px;
+      animation: floatIn 0.5s ease both;
+    }
     @keyframes floatIn {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     .artwork-img-wrap {
-      width: 100%; aspect-ratio: 3/4;
+      width: 100%;
       background: rgba(255,255,255,0.55);
       border-radius: 12px; overflow: hidden;
       border: 2px solid rgba(180,160,220,0.3);
       backdrop-filter: blur(4px);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
-      display: flex; align-items: center; justify-content: center;
     }
     .artwork-card:hover .artwork-img-wrap {
       transform: translateY(-6px) rotate(0.5deg);
       box-shadow: 0 12px 32px rgba(160,140,210,0.25);
     }
-    .artwork-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .artwork-img-wrap.empty {
-      background: rgba(255,255,255,0.35);
-      border: 2px dashed rgba(180,160,220,0.4);
-    }
-    .artwork-info { margin-top: 10px; padding: 0 4px; }
+    .artwork-img-wrap img { width: 100%; height: auto; display: block; }
+    .artwork-info { margin-top: 8px; padding: 0 4px; }
     .artwork-title { font-size: 13px; color: #6a5a8a; font-style: italic; }
     .artwork-date { font-size: 11px; color: #a090b8; margin-top: 2px; }
+
+    /* Section label */
+    .series-break {
+      break-inside: avoid;
+      margin-bottom: 8px;
+    }
+    .series-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b0a0c8;
+      padding: 0 4px;
+    }
+
+    /* Cursor */
     .cursor {
       position: fixed; width: 32px; height: 32px;
       pointer-events: none; z-index: 9999;
@@ -115,25 +126,143 @@
 
   <div class="page-content">
     <div class="page-title">
-      <img src="images/nav_home.png" alt="2023">
+      <img src="images/photo_2023.png" alt="2023">
     </div>
+
     <div class="gallery-grid">
+
+      <!-- Kiri Portrait series -->
       <div class="artwork-card">
-        <div class="artwork-img-wrap empty"></div>
-        <div class="artwork-info"><div class="artwork-title">Title</div><div class="artwork-date">2024</div></div>
+        <div class="artwork-img-wrap">
+          <img src="images/kiri-portrait-1-2023.jpg" alt="Kiri Portrait 1">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Kiri Portrait</div>
+          <div class="artwork-date">2023</div>
+        </div>
       </div>
       <div class="artwork-card">
-        <div class="artwork-img-wrap empty"></div>
-        <div class="artwork-info"><div class="artwork-title">Title</div><div class="artwork-date">2024</div></div>
+        <div class="artwork-img-wrap">
+          <img src="images/kiri-portrait-2-2023.jpg" alt="Kiri Portrait 2">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Kiri Portrait</div>
+          <div class="artwork-date">2023</div>
+        </div>
       </div>
       <div class="artwork-card">
-        <div class="artwork-img-wrap empty"></div>
-        <div class="artwork-info"><div class="artwork-title">Title</div><div class="artwork-date">2024</div></div>
+        <div class="artwork-img-wrap">
+          <img src="images/kiri-portrait-3-2023.jpg" alt="Kiri Portrait 3">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Kiri Portrait</div>
+          <div class="artwork-date">2023</div>
+        </div>
       </div>
       <div class="artwork-card">
-        <div class="artwork-img-wrap empty"></div>
-        <div class="artwork-info"><div class="artwork-title">Title</div><div class="artwork-date">2024</div></div>
+        <div class="artwork-img-wrap">
+          <img src="images/kiri-portrait-4-2023.jpg" alt="Kiri Portrait 4">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Kiri Portrait</div>
+          <div class="artwork-date">2023</div>
+        </div>
       </div>
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/kiri-portrait-5-2023.jpg" alt="Kiri Portrait 5">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Kiri Portrait</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/kiri-portrait-6-2023.jpg" alt="Kiri Portrait 6">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Kiri Portrait</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/kiri-portrait-7-2023.jpg" alt="Kiri Portrait 7">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Kiri Portrait</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/kiri-portrait-8-2023.JPG" alt="Kiri Portrait 8">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Kiri Portrait</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+
+      <!-- Leaf series -->
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/Leaf-1-2023.jpg" alt="Leaf 1">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Leaf</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/Leaf-2-2023.jpg" alt="Leaf 2">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Leaf</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/Leaf-3-2023.jpg" alt="Leaf 3">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Leaf</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/Leaf-4-2023.jpg" alt="Leaf 4">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Leaf</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/Leaf-5-2023.jpg" alt="Leaf 5">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Leaf</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+
+      <!-- Standalone -->
+      <div class="artwork-card">
+        <div class="artwork-img-wrap">
+          <img src="images/window-2023.JPG" alt="Window">
+        </div>
+        <div class="artwork-info">
+          <div class="artwork-title">Window</div>
+          <div class="artwork-date">2023</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -173,7 +302,6 @@
     window.addEventListener('pageshow', () => {
       document.getElementById('overlay').classList.remove('active');
     });
-
     document.querySelectorAll('.nav-btn').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');

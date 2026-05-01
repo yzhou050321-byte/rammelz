@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"c:\\\\rammelz\\\\images\\\\\" | Where-Object { $_.Name -match \"zine|HIKE|2023|2024|2025\" } | Select-Object Name | Sort-Object Name)",
+      "Bash(dir \"c:\\\\rammelz\\\\images\" /b)"
+    ]
+  }
+}
