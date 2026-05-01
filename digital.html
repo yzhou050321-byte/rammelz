@@ -148,6 +148,38 @@ margin-bottom: 28px;
       0%   { opacity: 1; transform: translate(-50%,-50%) scale(1) rotate(0deg); }
       100% { opacity: 0; transform: translate(-50%,-50%) scale(0.2) rotate(60deg); }
     }
+    /* ── Flipbook Modal ── */
+    .flipbook-modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(28,18,48,0.85); z-index: 500;
+      align-items: center; justify-content: center;
+    }
+    .flipbook-modal.open { display: flex; }
+    .flipbook-container { position: relative; display: flex; flex-direction: column; align-items: center; }
+    .flipbook-nav { display: flex; align-items: center; gap: 20px; }
+    .flipbook-img-wrap { position: relative; }
+    .flipbook-img {
+      max-width: 78vw; max-height: 84vh;
+      object-fit: contain; border-radius: 8px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.55); display: block;
+    }
+    .flipbook-btn {
+      background: rgba(255,255,255,0.16); border: none; color: #fff;
+      font-size: 26px; width: 48px; height: 48px; border-radius: 50%;
+      cursor: pointer; backdrop-filter: blur(6px); transition: background 0.2s; flex-shrink: 0;
+    }
+    .flipbook-btn:hover { background: rgba(255,255,255,0.3); }
+    .flipbook-close {
+      position: absolute; top: -44px; right: 0;
+      background: rgba(255,255,255,0.16); border: none; color: #fff;
+      font-size: 18px; width: 34px; height: 34px; border-radius: 50%;
+      cursor: pointer; backdrop-filter: blur(6px); transition: background 0.2s;
+    }
+    .flipbook-close:hover { background: rgba(255,255,255,0.3); }
+    .flipbook-counter {
+      text-align: center; color: rgba(255,255,255,0.65);
+      font-size: 13px; margin-top: 14px; letter-spacing: 0.04em;
+    }
     .transition-overlay {
       position: fixed; inset: 0; background: #e8e4f4;
       z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
@@ -417,7 +449,175 @@ margin-bottom: 28px;
     </div>
   </div>
 
+  <!-- Sheep Comic -->
+  <div class="artwork-card" id="openComic">
+    <div class="artwork-img-wrap">
+      <img src="images/sheep-comic-cover.png" alt="Sheep Comic">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Sheep Comic</div>
+      <div class="artwork-date">↗ click to read</div>
+    </div>
+  </div>
+
+  <!-- Cat and Dream -->
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/cat-and-dream-cover.PNG" alt="Cat and Dream">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Cat and Dream</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/cat-and-dream-1.PNG" alt="Cat and Dream — p.1">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Cat and Dream — p.1</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/cat-and-dream-2.PNG" alt="Cat and Dream — p.2">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Cat and Dream — p.2</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/cat-and-dream-3.PNG" alt="Cat and Dream — p.3">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Cat and Dream — p.3</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/cat-and-dream-4.PNG" alt="Cat and Dream — p.4">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Cat and Dream — p.4</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/cat-and-dream-5.PNG" alt="Cat and Dream — p.5">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Cat and Dream — p.5</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/cat-and-dream-back.PNG" alt="Cat and Dream — back">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Cat and Dream — back</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+
+  <!-- Shanhaijin Bookmark -->
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/shanhaijin-bookmark-front.png" alt="Shanhaijin Bookmark — Front">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Shanhaijin Bookmark — Front</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/shanhaijin-bookmark-back.png" alt="Shanhaijin Bookmark — Back">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Shanhaijin Bookmark — Back</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+
+  <!-- Cat Stickers -->
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/cat-stickers.JPG" alt="Cat Stickers">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Cat Stickers</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+
+  <!-- Braised Pork Belly -->
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/braised-pork-belly.JPG" alt="Braised Pork Belly">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Braised Pork Belly</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+
+  <!-- Spring Gift Box -->
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/spring-gift-box.JPG" alt="Spring Gift Box">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Spring Gift Box</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+
+  <!-- Tote Bag -->
+  <div class="artwork-card">
+    <div class="artwork-img-wrap">
+      <img src="images/tota-bag.JPG" alt="Tote Bag">
+    </div>
+    <div class="artwork-info">
+      <div class="artwork-title">Tote Bag</div>
+      <div class="artwork-date">2025</div>
+    </div>
+  </div>
+
 </div>
+  </div>
+
+  <!-- Flipbook Modal -->
+  <div class="flipbook-modal" id="flipbookModal">
+    <div class="flipbook-container">
+      <div class="flipbook-img-wrap">
+        <button class="flipbook-close" id="flipbookClose">✕</button>
+      </div>
+      <div class="flipbook-nav">
+        <button class="flipbook-btn" id="prevPage">&#8592;</button>
+        <img class="flipbook-img" id="flipbookImg" src="" alt="Comic page">
+        <button class="flipbook-btn" id="nextPage">&#8594;</button>
+      </div>
+      <div class="flipbook-counter" id="flipbookCounter"></div>
+    </div>
+  </div>
+
+  <div class="transition-overlay" id="overlay"></div>
+  <div class="cursor" id="cursor">
+    <svg viewBox="0 0 100 100">
+      <ellipse cx="50" cy="62" rx="26" ry="22"/>
+      <ellipse cx="24" cy="38" rx="12" ry="10"/>
+      <ellipse cx="44" cy="28" rx="12" ry="10"/>
+      <ellipse cx="64" cy="28" rx="12" ry="10"/>
+      <ellipse cx="78" cy="38" rx="12" ry="10"/>
+    </svg>
+  </div>
+
   <script>
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (e) => {
@@ -445,7 +645,6 @@ margin-bottom: 28px;
     window.addEventListener('pageshow', () => {
       document.getElementById('overlay').classList.remove('active');
     });
-
     document.querySelectorAll('.nav-btn').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
@@ -455,6 +654,46 @@ margin-bottom: 28px;
           setTimeout(() => { window.location.href = href; }, 300);
         }
       });
+    });
+
+    // Sheep Comic flipbook
+    const comicPages = [
+      'images/sheep-comic-cover.png',
+      'images/sheep-comic-3.png',
+      'images/sheep-comic-4.png',
+      'images/sheep-comic-5.png',
+      'images/sheep-comic-6.png',
+      'images/sheep-comic-7.png',
+      'images/sheep-comic-8.png',
+      'images/sheep-comic-9.png',
+      'images/sheep-comic-10.png',
+      'images/sheep-comic-12.png'
+    ];
+    let currentPage = 0;
+    const modal = document.getElementById('flipbookModal');
+    const flipImg = document.getElementById('flipbookImg');
+    const counter = document.getElementById('flipbookCounter');
+    function showPage(n) {
+      currentPage = (n + comicPages.length) % comicPages.length;
+      flipImg.src = comicPages[currentPage];
+      counter.textContent = (currentPage + 1) + ' / ' + comicPages.length;
+    }
+    document.getElementById('openComic').addEventListener('click', () => {
+      showPage(0); modal.classList.add('open');
+    });
+    document.getElementById('prevPage').addEventListener('click', (e) => {
+      e.stopPropagation(); showPage(currentPage - 1);
+    });
+    document.getElementById('nextPage').addEventListener('click', (e) => {
+      e.stopPropagation(); showPage(currentPage + 1);
+    });
+    document.getElementById('flipbookClose').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'ArrowLeft') showPage(currentPage - 1);
+      if (e.key === 'ArrowRight') showPage(currentPage + 1);
+      if (e.key === 'Escape') modal.classList.remove('open');
     });
   </script>
 </body>

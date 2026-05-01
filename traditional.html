@@ -30,7 +30,7 @@
       margin: 0 24px;
       height: 2px;
       background: linear-gradient(90deg, #b8b0d8, #d4c8e8, #b8b0d8);
-      z-index: 10; border-radius: 2px;
+      border-radius: 2px;
     }
     .page-content {
       padding-top: 24px; padding-bottom: 80px;
@@ -120,19 +120,19 @@
     <div class="gallery-grid">
       <div class="artwork-card">
         <div class="artwork-img-wrap empty"></div>
-        <div class="artwork-info"><div class="artwork-title">Title</div><div class="artwork-date">2024</div></div>
+        <div class="artwork-info"><div class="artwork-title">Coming soon</div></div>
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap empty"></div>
-        <div class="artwork-info"><div class="artwork-title">Title</div><div class="artwork-date">2024</div></div>
+        <div class="artwork-info"><div class="artwork-title">Coming soon</div></div>
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap empty"></div>
-        <div class="artwork-info"><div class="artwork-title">Title</div><div class="artwork-date">2024</div></div>
+        <div class="artwork-info"><div class="artwork-title">Coming soon</div></div>
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap empty"></div>
-        <div class="artwork-info"><div class="artwork-title">Title</div><div class="artwork-date">2024</div></div>
+        <div class="artwork-info"><div class="artwork-title">Coming soon</div></div>
       </div>
     </div>
   </div>
@@ -173,7 +173,6 @@
     window.addEventListener('pageshow', () => {
       document.getElementById('overlay').classList.remove('active');
     });
-
     document.querySelectorAll('.nav-btn').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
