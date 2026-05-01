@@ -28,17 +28,19 @@
     /* Hero illustration layer */
     .hero-drawing-wrap {
       position: fixed;
-      inset: -4%;
+      left: 0;
+      bottom: 0;
+      height: 96vh;
       z-index: 1;
       will-change: transform;
     }
     .hero-drawing {
-      width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
+      width: auto;
+      object-fit: contain;
+      object-position: bottom left;
       mix-blend-mode: multiply;
-      opacity: 0.85;
+      opacity: 0.9;
       animation: heroBreathe 5s ease-in-out infinite;
     }
     @keyframes heroBreathe {
@@ -67,7 +69,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 20px;
       margin-left: auto;
     }
 
@@ -82,10 +84,10 @@
     }
 
     .nav-links img {
-      height: 60px;
+      height: 80px;
       object-fit: contain;
     }
-    .nav-links a:nth-child(1) img { height: 40px; }
+    .nav-links a:nth-child(1) img { height: 52px; }
 
     /* Divider line */
     .nav-line {
