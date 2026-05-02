@@ -106,18 +106,18 @@
     .name-logo {
       position: fixed;
       top: 50%;
-      right: 3vw;
-      transform: translateY(-50%);
+      left: 50%;
+      transform: translate(-30%, -50%);
       z-index: 5;
-      width: 58vw;
+      width: 60vw;
       max-width: 800px;
       pointer-events: none;
       animation: floatY 4s ease-in-out infinite;
     }
 
     @keyframes floatY {
-      0%, 100% { transform: translateY(-50%); }
-      50% { transform: translateY(calc(-50% - 12px)); }
+      0%, 100% { transform: translate(-30%, -50%); }
+      50% { transform: translate(-30%, calc(-50% - 12px)); }
     }
 
     /* Custom cursor - paw */
