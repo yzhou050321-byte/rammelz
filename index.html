@@ -38,13 +38,11 @@
     .hero-drawing {
       height: 100%;
       width: 100%;
-      object-fit: contain;
-      object-position: 10% bottom;
+      object-fit: cover;
+      object-position: left bottom;
       mix-blend-mode: multiply;
       opacity: 0.9;
       animation: heroBreathe 5s ease-in-out infinite;
-      transform: scale(1.14);
-      transform-origin: left bottom;
     }
     @keyframes heroBreathe {
       0%, 100% { opacity: 0.82; }
@@ -111,7 +109,7 @@
       left: 50%;
       transform: translate(-42%, -50%);
       z-index: 5;
-      width: 60vw;
+      width: 58vw;
       max-width: 800px;
       pointer-events: none;
       animation: floatY 4s ease-in-out infinite;
