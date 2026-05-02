@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "PowerShell(Get-ChildItem \"c:\\\\rammelz\\\\images\\\\\" | Where-Object { $_.Name -match \"zine|HIKE|2023|2024|2025\" } | Select-Object Name | Sort-Object Name)",
-      "Bash(dir \"c:\\\\rammelz\\\\images\" /b)"
+      "Bash(dir \"c:\\\\rammelz\\\\images\" /b)",
+      "Bash(python -c \"from PIL import Image; img = Image.open\\('c:/rammelz/images/bg.png'\\); print\\(img.size\\)\")",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\('c:\\\\rammelz\\\\images\\\\bg.png'\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\('c:\\\\rammelz\\\\images\\\\hero_drawing.png'\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))"
     ]
   }
 }
