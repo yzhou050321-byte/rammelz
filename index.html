@@ -125,9 +125,11 @@
       position: fixed;
       width: 32px;
       height: 32px;
+      left: 0;
+      top: 0;
       pointer-events: none;
       z-index: 9999;
-      transform: translate(-50%, -50%);
+      will-change: transform;
       transition: transform 0.05s linear;
     }
 
@@ -238,8 +240,7 @@
     // Custom cursor
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
+      cursor.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
       spawnSparkle(e.clientX, e.clientY);
       targetX = (e.clientX / window.innerWidth  - 0.5) * -18;
       targetY = (e.clientY / window.innerHeight - 0.5) * -12;

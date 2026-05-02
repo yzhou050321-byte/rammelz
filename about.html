@@ -11,10 +11,15 @@
       min-height: 100vh;
       font-family: 'Georgia', serif;
       cursor: none;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
       background-image: url('images/bg.png');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
+      z-index: -1;
     }
 
     nav {
@@ -169,8 +174,9 @@
     /* Cursor */
     .cursor {
       position: fixed; width: 32px; height: 32px;
+      left: 0; top: 0;
       pointer-events: none; z-index: 9999;
-      transform: translate(-50%, -50%);
+      will-change: transform;
     }
     .cursor svg { width: 100%; height: 100%; fill: #a89dc8; opacity: 0.85; }
     .sparkle {
@@ -192,7 +198,6 @@
       .cursor { display: none; }
     }
     @media (max-width: 768px) {
-      body { background-attachment: scroll; }
       nav { padding: 10px 14px 0 12px; }
       .nav-logo { height: 44px; }
       .nav-links { gap: 6px; }
@@ -298,8 +303,7 @@
   <script>
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
+      cursor.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
       spawnSparkle(e.clientX, e.clientY);
     });
     let lastSparkle = 0;
