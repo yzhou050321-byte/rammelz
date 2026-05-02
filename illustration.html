@@ -164,6 +164,30 @@
       transition: opacity 0.3s ease;
     }
     .transition-overlay.active { opacity: 1; pointer-events: all; }
+
+    @media (hover: none) {
+      body { cursor: auto; }
+      .cursor { display: none; }
+      .category-item { cursor: auto; }
+    }
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; }
+      nav { padding: 10px 14px 0 12px; }
+      .nav-logo { height: 44px; }
+      .nav-links { gap: 6px; }
+      .nav-links img { height: 44px; }
+      .nav-links a:nth-child(1) img { height: 34px; }
+      .nav-line { margin: 0 12px; }
+      .project-label img { height: 140px; }
+      .project-label { margin-bottom: 24px; }
+      .category-grid { gap: 20px; max-width: 100%; }
+      .category-item img { max-height: 140px; }
+      .category-item:nth-child(1) img { max-height: 130px; }
+      .category-item:nth-child(3) img { max-height: 150px; }
+    }
+    @media (max-width: 480px) {
+      .category-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>

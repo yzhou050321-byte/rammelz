@@ -167,6 +167,20 @@
       opacity: 1;
       pointer-events: all;
     }
+
+    @media (hover: none) {
+      body { cursor: auto; }
+      .cursor { display: none; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 10px 14px 0 12px; }
+      .nav-logo { height: 46px; }
+      .nav-links { gap: 6px; }
+      .nav-links img { height: 46px; }
+      .nav-links a:nth-child(1) img { height: 36px; }
+      .nav-line { top: 66px; left: 12px; right: 12px; }
+      .name-logo { width: 90vw; transform: translate(-50%, -50%); }
+    }
   </style>
 </head>
 <body>

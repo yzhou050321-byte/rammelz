@@ -104,6 +104,25 @@
       z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
     }
     .transition-overlay.active { opacity: 1; pointer-events: all; }
+
+    @media (hover: none) {
+      body { cursor: auto; }
+      .cursor { display: none; }
+      .artwork-card { cursor: auto; }
+    }
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; }
+      nav { padding: 10px 14px 0 12px; }
+      .nav-logo { height: 44px; }
+      .nav-links { gap: 6px; }
+      .nav-links img { height: 44px; }
+      .nav-links a:nth-child(1) img { height: 34px; }
+      .nav-line { margin: 0 12px; }
+      .page-title img { height: 120px; }
+      .page-title { margin-bottom: 20px; }
+      .gallery-grid { columns: 2; column-gap: 12px; }
+      .artwork-card { margin-bottom: 12px; }
+    }
   </style>
 </head>
 <body>
