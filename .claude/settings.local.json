@@ -6,7 +6,12 @@
       "Bash(python -c \"from PIL import Image; img = Image.open\\('c:/rammelz/images/bg.png'\\); print\\(img.size\\)\")",
       "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\('c:\\\\rammelz\\\\images\\\\bg.png'\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))",
       "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\('c:\\\\rammelz\\\\images\\\\hero_drawing.png'\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))",
-      "PowerShell(Get-ChildItem \"c:\\\\rammelz\" -Recurse -Depth 2 | Select-Object FullName, Extension | Where-Object { $_.Extension -match \"\\\\.\\(vue|jsx|tsx|js|ts|html|css|scss\\)\" })"
+      "PowerShell(Get-ChildItem \"c:\\\\rammelz\" -Recurse -Depth 2 | Select-Object FullName, Extension | Where-Object { $_.Extension -match \"\\\\.\\(vue|jsx|tsx|js|ts|html|css|scss\\)\" })",
+      "Bash(Get-ChildItem -Path \"c:\\\\rammelz\" -Recurse -Force)",
+      "Bash(Select-Object -Property FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path \"c:\\\\rammelz\\\\images\" -File | Measure-Object -Property Length -Sum | Select-Object Count, @{Name='TotalSize\\(MB\\)';Expression={[math]::Round\\($_.Sum/1MB,2\\)}})"
     ]
   }
 }

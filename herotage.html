@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" as="image" href="images/ill_bg.png">
   <title>HERI∞TAGE — Rammel Z.</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -80,7 +81,7 @@
       transform: translateY(-6px) rotate(0.5deg);
       box-shadow: 0 12px 32px rgba(160,140,210,0.25);
     }
-    .artwork-img-wrap img { width: 100%; height: auto; display: block; }
+    .artwork-img-wrap img { width: 100%; height: auto; display: block; will-change: auto; }
     .artwork-info { margin-top: 8px; padding: 0 4px; }
     .artwork-title { font-size: 13px; color: #6a5a8a; font-style: italic; }
     .artwork-date { font-size: 11px; color: #a090b8; margin-top: 2px; }
@@ -216,7 +217,7 @@
 
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/Legend-of-four-season-printmaking-cover.jpg" alt="Legend of Four Seasons — Printmaking Cover">
+          <img loading="lazy" decoding="async" src="images/Legend-of-four-season-printmaking-cover.jpg" alt="Legend of Four Seasons — Printmaking Cover">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Legend of Four Seasons — Cover</div>
@@ -226,7 +227,7 @@
 
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/Legend-of-four-season-printmaking-cover-1.jpg" alt="Legend of Four Seasons — Printmaking Cover 1">
+          <img loading="lazy" decoding="async" src="images/Legend-of-four-season-printmaking-cover-1.jpg" alt="Legend of Four Seasons — Printmaking Cover 1">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Legend of Four Seasons — Cover II</div>
@@ -236,7 +237,7 @@
 
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/Legend-of-four-season-printmaking-Dragon-Boat.jpg" alt="Legend of Four Seasons — Dragon Boat">
+          <img loading="lazy" decoding="async" src="images/Legend-of-four-season-printmaking-Dragon-Boat.jpg" alt="Legend of Four Seasons — Dragon Boat">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Legend of Four Seasons — Dragon Boat</div>
@@ -246,7 +247,7 @@
 
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/Legend-of-four-season-printmaking-Monster-Nian.jpg" alt="Legend of Four Seasons — Monster Nian">
+          <img loading="lazy" decoding="async" src="images/Legend-of-four-season-printmaking-Monster-Nian.jpg" alt="Legend of Four Seasons — Monster Nian">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Legend of Four Seasons — Monster Nian</div>
@@ -256,7 +257,7 @@
 
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/printmaking-Monster-Nian.jpg" alt="Monster Nian">
+          <img loading="lazy" decoding="async" src="images/printmaking-Monster-Nian.jpg" alt="Monster Nian">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Monster Nian</div>

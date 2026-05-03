@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" as="image" href="images/bg.png">
   <title>2024 — Rammel Z.</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -76,7 +77,7 @@
       transform: translateY(-6px) rotate(0.5deg);
       box-shadow: 0 12px 32px rgba(160,140,210,0.25);
     }
-    .artwork-img-wrap img { width: 100%; height: auto; display: block; }
+    .artwork-img-wrap img { width: 100%; height: auto; display: block; will-change: auto; }
     .artwork-info { margin-top: 8px; padding: 0 4px; }
     .artwork-title { font-size: 13px; color: #6a5a8a; font-style: italic; }
     .artwork-date { font-size: 11px; color: #a090b8; margin-top: 2px; }
@@ -285,7 +286,7 @@
       <!-- HIKE Zine — flipbook card -->
       <div class="zine-card" id="zine-open-btn">
         <div class="artwork-img-wrap">
-          <img src="images/HIKE-zine1.png" alt="HIKE Zine cover">
+          <img loading="lazy" decoding="async" src="images/HIKE-zine1.png" alt="HIKE Zine cover">
           <div class="zine-overlay">
             <span class="zine-open-hint">Open Zine ↗</span>
           </div>
@@ -299,7 +300,7 @@
       <!-- Standalone photos -->
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/flower-2024.JPG" alt="Flower">
+          <img loading="lazy" decoding="async" src="images/flower-2024.JPG" alt="Flower">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Flower</div>
@@ -308,7 +309,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/azure-2024.jpg" alt="Azure">
+          <img loading="lazy" decoding="async" src="images/azure-2024.jpg" alt="Azure">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Azure</div>
@@ -317,7 +318,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/jellyfish-2024.JPG" alt="Jellyfish">
+          <img loading="lazy" decoding="async" src="images/jellyfish-2024.JPG" alt="Jellyfish">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Jellyfish</div>
@@ -326,7 +327,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/a-cat-in-a-swimming-ring-2024.JPG" alt="A Cat in a Swimming Ring">
+          <img loading="lazy" decoding="async" src="images/a-cat-in-a-swimming-ring-2024.JPG" alt="A Cat in a Swimming Ring">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">A Cat in a Swimming Ring</div>
@@ -335,7 +336,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/FUJI-mountain-2024.jpg" alt="Fuji Mountain">
+          <img loading="lazy" decoding="async" src="images/FUJI-mountain-2024.jpg" alt="Fuji Mountain">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Fuji Mountain</div>
@@ -344,7 +345,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/untitled-2024.jpg" alt="Untitled">
+          <img loading="lazy" decoding="async" src="images/untitled-2024.jpg" alt="Untitled">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Untitled</div>

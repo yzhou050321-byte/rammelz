@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rammel Z.</title>
+  <link rel="preload" as="image" href="images/bg.png">
+  <link rel="preload" as="image" href="images/hero_drawing.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -193,7 +195,7 @@
 
   <div class="bg"></div>
   <div class="hero-drawing-wrap" id="heroWrap">
-    <img class="hero-drawing" src="images/hero_drawing.png" alt="">
+    <img class="hero-drawing" src="images/hero_drawing.png" alt="" fetchpriority="high">
   </div>
 
   <!-- Navbar -->

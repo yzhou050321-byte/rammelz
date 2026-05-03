@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" as="image" href="images/ill_bg.png">
   <title>Character Design — Rammel Z.</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -85,7 +86,7 @@
       transform: translateY(-6px) rotate(0.5deg);
       box-shadow: 0 12px 32px rgba(160,140,210,0.25);
     }
-    .artwork-img-wrap img { width: 100%; height: auto; display: block; }
+    .artwork-img-wrap img { width: 100%; height: auto; display: block; will-change: auto; }
     .artwork-info { margin-top: 8px; padding: 0 4px; }
     .artwork-title { font-size: 13px; color: #6a5a8a; font-style: italic; }
     .artwork-date { font-size: 11px; color: #a090b8; margin-top: 2px; }
@@ -222,7 +223,7 @@
       <!-- Candy Girl series -->
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/Candy-Girl-Bubble.JPG" alt="Candy Girl — Bubble">
+          <img loading="lazy" decoding="async" src="images/Candy-Girl-Bubble.JPG" alt="Candy Girl — Bubble">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Candy Girl — Bubble</div>
@@ -231,7 +232,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/Candy-Girl-Rainbow.JPG" alt="Candy Girl — Rainbow">
+          <img loading="lazy" decoding="async" src="images/Candy-Girl-Rainbow.JPG" alt="Candy Girl — Rainbow">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Candy Girl — Rainbow</div>
@@ -240,7 +241,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/Candy-Girl-White-Rabbit.JPG" alt="Candy Girl — White Rabbit">
+          <img loading="lazy" decoding="async" src="images/Candy-Girl-White-Rabbit.JPG" alt="Candy Girl — White Rabbit">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Candy Girl — White Rabbit</div>
@@ -251,7 +252,7 @@
       <!-- HERI∞TAGE character designs -->
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/herotage-CaoCao.JPG" alt="Cao Cao">
+          <img loading="lazy" decoding="async" src="images/herotage-CaoCao.JPG" alt="Cao Cao">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Cao Cao</div>
@@ -260,7 +261,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/herotage-GuanGong.JPG" alt="Guan Gong">
+          <img loading="lazy" decoding="async" src="images/herotage-GuanGong.JPG" alt="Guan Gong">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Guan Gong</div>
@@ -269,7 +270,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/herotage-TuDi.JPG" alt="Tu Di">
+          <img loading="lazy" decoding="async" src="images/herotage-TuDi.JPG" alt="Tu Di">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Tu Di</div>
@@ -278,7 +279,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/herotage-Yaksha.JPG" alt="Yaksha">
+          <img loading="lazy" decoding="async" src="images/herotage-Yaksha.JPG" alt="Yaksha">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Yaksha</div>
@@ -287,7 +288,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/herotage-ZhangFei.JPG" alt="Zhang Fei">
+          <img loading="lazy" decoding="async" src="images/herotage-ZhangFei.JPG" alt="Zhang Fei">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Zhang Fei</div>
@@ -298,7 +299,7 @@
       <!-- OC — Lin Yi -->
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/OC-LinYi-1.PNG" alt="OC Lin Yi">
+          <img loading="lazy" decoding="async" src="images/OC-LinYi-1.PNG" alt="OC Lin Yi">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Lin Yi</div>
@@ -307,7 +308,7 @@
       </div>
       <div class="artwork-card">
         <div class="artwork-img-wrap">
-          <img src="images/OC-LinYi-2.PNG" alt="OC Lin Yi 2">
+          <img loading="lazy" decoding="async" src="images/OC-LinYi-2.PNG" alt="OC Lin Yi 2">
         </div>
         <div class="artwork-info">
           <div class="artwork-title">Lin Yi II</div>
