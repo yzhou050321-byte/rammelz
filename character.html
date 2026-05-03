@@ -172,12 +172,14 @@
       max-width: 82vw; max-height: 82vh;
       object-fit: contain; border-radius: 8px;
       box-shadow: 0 8px 48px rgba(0,0,0,0.6); display: block;
+      cursor: zoom-in; transform-origin: center center;
     }
     .lb-btn {
       background: rgba(255,255,255,0.14); border: none; color: #fff;
       font-size: 26px; width: 52px; height: 52px; border-radius: 50%;
       cursor: pointer; backdrop-filter: blur(6px);
       transition: background 0.2s; flex-shrink: 0;
+      position: relative; z-index: 1;
     }
     .lb-btn:hover { background: rgba(255,255,255,0.28); }
     .lb-close {
@@ -185,6 +187,7 @@
       background: rgba(255,255,255,0.14); border: none; color: #fff;
       font-size: 18px; width: 36px; height: 36px; border-radius: 50%;
       cursor: pointer; backdrop-filter: blur(6px); transition: background 0.2s;
+      z-index: 1;
     }
     .lb-close:hover { background: rgba(255,255,255,0.28); }
     .lb-info {
@@ -396,29 +399,98 @@
         title: c.querySelector('.artwork-title')?.textContent || ''
       }));
       let lbIdx = 0;
+
+      let scale = 1, panX = 0, panY = 0;
+      let isDrag = false, dragX = 0, dragY = 0, panStartX = 0, panStartY = 0;
+
+      function applyZoom() {
+        lbImg.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
+        lbImg.style.cursor = scale > 1 ? (isDrag ? 'grabbing' : 'grab') : 'zoom-in';
+      }
+      function resetZoom() { scale = 1; panX = 0; panY = 0; isDrag = false; applyZoom(); }
+
       function lbShow(i) {
         lbIdx = (i + lbImages.length) % lbImages.length;
         lbImg.src = lbImages[lbIdx].src;
         lbTitle.textContent = lbImages[lbIdx].title;
         lbCounter.textContent = (lbIdx + 1) + ' / ' + lbImages.length;
-        lbModal.classList.add('open');
+        lbModal.classList.add('open'); resetZoom();
       }
+
       lbCards.forEach((c, i) => c.addEventListener('click', () => lbShow(i)));
       document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbIdx - 1); });
       document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbIdx + 1); });
-      document.getElementById('lbClose').addEventListener('click', () => lbModal.classList.remove('open'));
-      lbModal.addEventListener('click', (e) => { if (e.target === lbModal) lbModal.classList.remove('open'); });
+      document.getElementById('lbClose').addEventListener('click', () => { lbModal.classList.remove('open'); resetZoom(); });
+      lbModal.addEventListener('click', (e) => { if (e.target === lbModal) { lbModal.classList.remove('open'); resetZoom(); } });
       document.addEventListener('keydown', (e) => {
         if (!lbModal.classList.contains('open')) return;
         if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
         if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
-        if (e.key === 'Escape') lbModal.classList.remove('open');
+        if (e.key === 'Escape') { lbModal.classList.remove('open'); resetZoom(); }
       });
-      let lbTouchX = 0;
-      lbImg.addEventListener('touchstart', (e) => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+
+      lbImg.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const newScale = Math.max(1, Math.min(6, scale * (e.deltaY < 0 ? 1.2 : 1 / 1.2)));
+        if (newScale === scale) return;
+        const r = lbImg.getBoundingClientRect();
+        panX += (e.clientX - (r.left + r.width / 2))  * (1 - newScale / scale);
+        panY += (e.clientY - (r.top  + r.height / 2)) * (1 - newScale / scale);
+        scale = newScale; applyZoom();
+      }, { passive: false });
+
+      lbImg.addEventListener('dblclick', (e) => {
+        if (scale > 1) { resetZoom(); return; }
+        const r = lbImg.getBoundingClientRect();
+        panX += (e.clientX - (r.left + r.width / 2))  * (1 - 2.5);
+        panY += (e.clientY - (r.top  + r.height / 2)) * (1 - 2.5);
+        scale = 2.5; applyZoom();
+      });
+
+      lbImg.addEventListener('mousedown', (e) => {
+        if (scale <= 1) return;
+        isDrag = true; dragX = e.clientX; dragY = e.clientY;
+        panStartX = panX; panStartY = panY;
+        lbImg.style.cursor = 'grabbing'; e.preventDefault();
+      });
+      document.addEventListener('mousemove', (e) => {
+        if (!isDrag) return;
+        panX = panStartX + e.clientX - dragX; panY = panStartY + e.clientY - dragY; applyZoom();
+      });
+      document.addEventListener('mouseup', () => { if (isDrag) { isDrag = false; applyZoom(); } });
+
+      let lbTouchX = 0, lbTouchY = 0, pinchDist = 0, touchPanning = false;
+      lbImg.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+          pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          e.preventDefault();
+        } else if (e.touches.length === 1) {
+          lbTouchX = e.touches[0].clientX; lbTouchY = e.touches[0].clientY;
+          if (scale > 1) { touchPanning = true; panStartX = panX; panStartY = panY; }
+        }
+      }, { passive: false });
+      lbImg.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2 && pinchDist > 0) {
+          const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          const mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+          const my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+          const newScale = Math.max(1, Math.min(6, scale * dist / pinchDist));
+          const r = lbImg.getBoundingClientRect();
+          panX += (mx - (r.left + r.width / 2))  * (1 - newScale / scale);
+          panY += (my - (r.top  + r.height / 2)) * (1 - newScale / scale);
+          scale = newScale; pinchDist = dist; applyZoom(); e.preventDefault();
+        } else if (e.touches.length === 1 && touchPanning) {
+          panX = panStartX + e.touches[0].clientX - lbTouchX;
+          panY = panStartY + e.touches[0].clientY - lbTouchY;
+          applyZoom(); e.preventDefault();
+        }
+      }, { passive: false });
       lbImg.addEventListener('touchend', (e) => {
-        const dx = e.changedTouches[0].clientX - lbTouchX;
-        if (Math.abs(dx) > 40) lbShow(dx < 0 ? lbIdx + 1 : lbIdx - 1);
+        pinchDist = 0; touchPanning = false;
+        if (scale <= 1 && e.changedTouches.length === 1) {
+          const dx = e.changedTouches[0].clientX - lbTouchX;
+          if (Math.abs(dx) > 40) lbShow(dx < 0 ? lbIdx + 1 : lbIdx - 1);
+        }
       });
     })();
   </script>
