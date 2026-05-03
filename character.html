@@ -158,6 +158,44 @@
     @media (max-width: 640px) {
       .back-btn { bottom: 18px; left: 16px; padding: 8px 16px; font-size: 13px; }
     }
+    /* Lightbox */
+    .lb-modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(18,12,36,0.92); z-index: 500;
+      align-items: center; justify-content: center;
+    }
+    .lb-modal.open { display: flex; }
+    .lb-container { position: relative; display: flex; flex-direction: column; align-items: center; }
+    .lb-nav { display: flex; align-items: center; gap: 16px; }
+    .lb-img-wrap { position: relative; }
+    .lb-img {
+      max-width: 82vw; max-height: 82vh;
+      object-fit: contain; border-radius: 8px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6); display: block;
+    }
+    .lb-btn {
+      background: rgba(255,255,255,0.14); border: none; color: #fff;
+      font-size: 26px; width: 52px; height: 52px; border-radius: 50%;
+      cursor: pointer; backdrop-filter: blur(6px);
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,0.28); }
+    .lb-close {
+      position: absolute; top: -48px; right: 0;
+      background: rgba(255,255,255,0.14); border: none; color: #fff;
+      font-size: 18px; width: 36px; height: 36px; border-radius: 50%;
+      cursor: pointer; backdrop-filter: blur(6px); transition: background 0.2s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,0.28); }
+    .lb-info {
+      text-align: center; margin-top: 14px;
+      color: rgba(255,255,255,0.8); font-size: 14px; font-style: italic;
+    }
+    .lb-counter { color: rgba(255,255,255,0.45); font-size: 12px; margin-top: 4px; }
+    @media (max-width: 640px) {
+      .lb-btn { width: 40px; height: 40px; font-size: 20px; }
+      .lb-img { max-width: 94vw; max-height: 76vh; }
+    }
   </style>
 </head>
 <body>
@@ -277,6 +315,22 @@
     </div>
   </div>
 
+  <!-- Lightbox -->
+  <div class="lb-modal" id="lbModal">
+    <div class="lb-container">
+      <div class="lb-nav">
+        <button class="lb-btn" id="lbPrev">&#8592;</button>
+        <div class="lb-img-wrap">
+          <button class="lb-close" id="lbClose">&#x2715;</button>
+          <img class="lb-img" id="lbImg" src="" alt="">
+        </div>
+        <button class="lb-btn" id="lbNext">&#8594;</button>
+      </div>
+      <div class="lb-info" id="lbTitle"></div>
+      <div class="lb-counter" id="lbCounter"></div>
+    </div>
+  </div>
+
   <a href="illustration.html" class="back-btn nav-btn">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a89dc8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M19 12H5M12 5l-7 7 7 7"/>
@@ -329,6 +383,44 @@
         }
       });
     });
+
+    // Lightbox
+    (function() {
+      const lbModal = document.getElementById('lbModal');
+      const lbImg   = document.getElementById('lbImg');
+      const lbTitle = document.getElementById('lbTitle');
+      const lbCounter = document.getElementById('lbCounter');
+      const lbCards = Array.from(document.querySelectorAll('.artwork-card'));
+      const lbImages = lbCards.map(c => ({
+        src: c.querySelector('.artwork-img-wrap img')?.src || '',
+        title: c.querySelector('.artwork-title')?.textContent || ''
+      }));
+      let lbIdx = 0;
+      function lbShow(i) {
+        lbIdx = (i + lbImages.length) % lbImages.length;
+        lbImg.src = lbImages[lbIdx].src;
+        lbTitle.textContent = lbImages[lbIdx].title;
+        lbCounter.textContent = (lbIdx + 1) + ' / ' + lbImages.length;
+        lbModal.classList.add('open');
+      }
+      lbCards.forEach((c, i) => c.addEventListener('click', () => lbShow(i)));
+      document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbIdx - 1); });
+      document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbIdx + 1); });
+      document.getElementById('lbClose').addEventListener('click', () => lbModal.classList.remove('open'));
+      lbModal.addEventListener('click', (e) => { if (e.target === lbModal) lbModal.classList.remove('open'); });
+      document.addEventListener('keydown', (e) => {
+        if (!lbModal.classList.contains('open')) return;
+        if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
+        if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
+        if (e.key === 'Escape') lbModal.classList.remove('open');
+      });
+      let lbTouchX = 0;
+      lbImg.addEventListener('touchstart', (e) => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+      lbImg.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - lbTouchX;
+        if (Math.abs(dx) > 40) lbShow(dx < 0 ? lbIdx + 1 : lbIdx - 1);
+      });
+    })();
   </script>
 </body>
 </html>
